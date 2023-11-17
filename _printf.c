@@ -2,9 +2,11 @@
 
 /**
  * _printf -  produces output according to a format
- * @format: a character string. The format string is composed of zero or more directives.
+ * @format: a character string. The format string is 
+ * composed of zero or more directives.
  *
- * Return:  number of characters printed (excluding the null byte used to end output to strings)
+ * Return:  number of characters printed 
+ * (excluding the null byte used to end output to strings)
  */
 
 int _printf(const char *format, ...)
