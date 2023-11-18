@@ -12,43 +12,36 @@
 int _printf(const char *format, ...)
 {
 	va_list ap;
-	int n = 0;
+	int n = 0, a = 0, b;
+
+	m_format t[] = {
+		{"%c", print_char}, {"%s", print_string}, {"%r", print_srev},
+		{"%S", print_ex_string},
+		{"%d", print_decimal}, {"%i", print_integer}
+	};
 
 	va_start(ap, format);
 
+	if (format == NULL || format[0] == "%" || format[1] == '\0')
+		return (-1);
+Here:
 	while (*format != '\0')
 	{
-
-	if (*format == "%")
-		format++;
-		if (*format == "%")
-			_putchar("%");
-			n++;
-		else if (*format == "c")
+		b = 13;
+		while (b >= 0)
 		{
-			int c1 = va_arg(ap, int);
-
-			_putchar(c1);
-			n++;
-		}
-		else if (*format == "str")
-
-			char *str = va_arg(ap, char *);
-
-			while (*str)
+			if (t[b].td[0] == format[a] && t[b].td[1] == format[a + 1])
 			{
-				_putchar(*str);
-				str++;
-				n++;
+				n += t[b].func(ap);
+				a = a + 2;
+				goto Here;
 			}
-		else
-		{
-			_putchar(*format);
-			n++;
+			b--;
 		}
-		format++;
+		_putchar(format[a]);
+		n++;
+		a++;
 	}
 	va_end(ap);
 	return (n);
 }
-
