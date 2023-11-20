@@ -16,16 +16,18 @@ int _printf(const char *format, ...)
 
 	m_format t[] = {
 		{"%c", print_char}, {"%s", print_string}, {"%r", print_srev},
-		{"%S", print_ex_string},
-		{"%d", print_decimal}, {"%i", print_integer}
+		{"%S", print_ex_string}, {"%x", print_hexad}, {"%X", print_HEXA},
+		{"%d", print_decimal}, {"%i", print_integer}, {"%u", print_unsig},
+		{"%b", print_bin}, {"%o", print_octa}, {"%R", print_rot13},
+		{"%%", print_37}, {"%p", print_pointer}
 	};
 
 	va_start(ap, format);
 
-	if (format == NULL || format[0] == "%" || format[1] == '\0')
+	if (format == NULL || format[0] == "%" && format[1] == '\0')
 		return (-1);
 Here:
-	while (*format != '\0')
+	while (format[a] != '\0')
 	{
 		b = 13;
 		while (b >= 0)
